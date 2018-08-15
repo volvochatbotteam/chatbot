@@ -4058,7 +4058,8 @@ var Chat = (function (_super) {
             React.createElement("div", { className: "wc-chatview-panel", onKeyDownCapture: this._handleKeyDownCapture, ref: this._saveChatviewPanelRef },
                 !!state.format.chatTitle &&
                     React.createElement("div", { className: "wc-header" },
-                        React.createElement("span", null, typeof state.format.chatTitle === 'string' ? state.format.chatTitle : state.format.strings.title)),
+                        React.createElement("span", null, typeof state.format.chatTitle === 'string' ? state.format.chatTitle : state.format.strings.title),
+                        React.createElement("input", { type: "button", value: "_", id: "minBtn", className: "minBtn" })),
                 React.createElement(MessagePane_1.MessagePane, null,
                     React.createElement(History_1.History, { onCardAction: this._handleCardAction, ref: this._saveHistoryRef })),
                 React.createElement(Shell_1.Shell, { ref: this._saveShellRef }),

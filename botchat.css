@@ -585,3 +585,29 @@ body .wc-app, .wc-app button, .wc-app input, .wc-app textarea {
   .wc-message-from-me a.wc-link-download:active .wc-icon-download {
     background-image: url('data:image/svg+xml;utf8,<svg width="12" height="20" viewBox="0 0 12 20" xmlns="http://www.w3.org/2000/svg"><path d="M.435 20v-1.25h11.13V20H.435zM12 10.44l-6 6.113-6-6.114.87-.88 4.512 4.59V0h1.236v14.15l4.512-4.59.87.88z" fill="#ffffff" fill-rule="evenodd"/></svg>');
     background-repeat: no-repeat; }
+
+.minBtn {
+  float: right;
+  background-color: #fd7e14; }
+
+.minBtn {
+  padding: 2px 8px;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  border: none;
+  border-radius: 2px;
+  box-shadow: 0 2px #999;
+  opacity: 1;
+  transition: 0.3s; }
+
+.minBtn:hover {
+  background-color: #ffa333;
+  opacity: 0.6; }
+
+.minBtn:active {
+  background-color: #fd7e14;
+  box-shadow: 0 1px #666;
+  transform: translateY(2px); }
