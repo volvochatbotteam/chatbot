@@ -37,7 +37,7 @@
                     var token = msg.token;
                     startChatBot(token);
                     $("#minBtn").onclick = function(){
-                        window.parent.postMessage("minBtn");
+                        window.parent.postMessage("minBtn", "*");
                     }
                 }
             });
