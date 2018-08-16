@@ -36,11 +36,11 @@
                 success: function (msg) {
                     var token = msg.token;
                     startChatBot(token);
-                    let minBtn = document.getElementById("minBtn");
-                    minBtn.click() = function() {
+                    //let minBtn = document.getElementById("minBtn");
+                    $("#minBtn").click(function() {
                         console.log('clicked');
                         window.parent.postMessage('minBtn', '*');
-                    }
+                    }); 
                 }
             });
         }
