@@ -35,52 +35,55 @@
                 processData: false,
                 success: function (msg) {
                     var token = msg.token;
-                    startChatBot(token);
+                    startChatBot(token).then(
                     //let minBtn = document.getElementById("minBtn");
                     $("#minBtn").click(function() {
                         //console.log('clicked');
                         window.parent.postMessage('minBtn', '*');
-                    }); 
+                    })); 
                 }
             });
         }
 
         function startChatBot(token) {
-            const params = BotChat.queryParams(location.search);
+            return new Promise(resolve => {
+                const params = BotChat.queryParams(location.search);
 
-            const user = {
-                id: params['userid'] || 'userid',
-                name: params['username'] || 'You'
-            };
+                const user = {
+                    id: params['userid'] || 'userid',
+                    name: params['username'] || 'You'
+                };
 
-            const bot = {
-                id: params['botid'] || 'botid',
-                name: params['botname'] || 'HelpBot'
-            };
+                const bot = {
+                    id: params['botid'] || 'botid',
+                    name: params['botname'] || 'HelpBot'
+                };
 
-            const speechOptions = {
-                speechRecognizer: new BotChat.Speech.BrowserSpeechRecognizer(),
-                speechSynthesizer: new BotChat.Speech.BrowserSpeechSynthesizer()
-            };
+                const speechOptions = {
+                    speechRecognizer: new BotChat.Speech.BrowserSpeechRecognizer(),
+                    speechSynthesizer: new BotChat.Speech.BrowserSpeechSynthesizer()
+                };
 
+                
+                window['botchatDebug'] = params['debug'] && params['debug'] === 'true';
+
+                botConnection = new BotChat.DirectLine({
+                    token: token,
+                    webSocket: false
+                });            
+
+                BotChat.App({
+                    botConnection: botConnection,
+                    bot: bot,
+                    resize: 'window',
+                    //speechOptions: speechOptions,
+                    sendTyping: true,    // defaults to false. set to true to send 'typing' activities to bot (and other users) when user is typing
+                    user: user,
+                    locale: 'en-us', // override locale
+                    chatTitle: "VIRA",
+                }, document.getElementById('BotChatGoesHere'));
+            })
             
-            window['botchatDebug'] = params['debug'] && params['debug'] === 'true';
-
-            botConnection = new BotChat.DirectLine({
-                token: token,
-                webSocket: false
-            });            
-
-            BotChat.App({
-                botConnection: botConnection,
-                bot: bot,
-                resize: 'window',
-                //speechOptions: speechOptions,
-                sendTyping: true,    // defaults to false. set to true to send 'typing' activities to bot (and other users) when user is typing
-                user: user,
-                locale: 'en-us', // override locale
-                chatTitle: "VIRA",
-            }, document.getElementById('BotChatGoesHere'));
 
             //botConnection
             //    .postActivity({
